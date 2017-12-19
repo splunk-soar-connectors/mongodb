@@ -72,7 +72,7 @@
             "identifier": "post_data",
             "description": "Add data to the database",
             "verbose": "",
-            "type": "investigate",
+            "type": "generic",
             "read_only": false,
             "parameters": {
                 "collection": {
