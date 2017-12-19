@@ -1,0 +1,34 @@
+<!--
+    File: readme.html
+
+    Copyright (c) Phantom Cyber Corporation, 2017
+
+    This unpublished material is proprietary to Phantom Cyber.
+    All rights reserved. The methods and
+    techniques described herein are considered trade secrets
+    and/or confidential. Reproduction or distribution, in whole
+    or in part, is forbidden except by express written permission
+    of Phantom Cyber.
+-->
+<p>
+This app will ignore the HTTP_PROXY and HTTPS_PROXY environment variables, as it does not use HTTP to connect to the database.
+</p>
+
+<h3>On Creating New Databases and Collections</h3>
+<p>
+When creating a new asset, you must specify something for the <b>database</b> parameter, which will be the name of the database.
+If you specify one which does not currently exist, then the app will carry on as normal (though there will be a warning in the
+test connectivity modal). After running a <b>post data</b> action, then that database will be created. Similarly, by specifying
+a <b>collection</b> which does not currently exist as a parameter to <b>post data</b>, you can create new collections.
+</p><br>
+
+<h3>BSON Strings</h3>
+<p>
+Many parameters in this app, like <b>data</b> and <b>filter</b> expect a deserializable BSON string.
+In respects to this app, BSON is a superset of JSON, so any valid JSON will be properly deserialized.
+However, BSON can also deserialize many other types. For example, MongoDB uses an ObjectID type by default for the "_id" field.
+In order to use this, like to create a filter, the BSON string will look like <code>{"_id": {"$oid":"5a345190f059c57581d754f0"}}</code>.
+If you can install the appropriate python modules (i.e. pymongo) then you can serialize python dictionaries to the appropriate string
+in your playbook code.  If that approach isn't possible, the result data from <b>get data</b> will contain the appropriate
+representations, as well, which can be used as reference for future actions.
+</p>

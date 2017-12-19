@@ -1,0 +1,4 @@
+[submodule "pymongo"]
+	path = pymongo
+	url = ssh://git@prod-bb-1.phantom.local:7999/per/pymongo.git
+	ignore = dirty
