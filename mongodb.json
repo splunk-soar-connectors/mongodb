@@ -8,7 +8,7 @@
     "product_name": "MongoDB",
     "product_version_regex": ".*",
     "publisher": "Phantom",
-    "license": "Copyright (c) Phantom Cyber Corporation, 2017",
+    "license": "Copyright (c) Phantom Cyber Corporation, 2018",
     "app_version": "1.0.0",
     "utctime_updated": "2017-12-14T02:47:11.451477Z",
     "package_name": "phantom_mongodb",
