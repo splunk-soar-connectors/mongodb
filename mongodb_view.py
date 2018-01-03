@@ -26,10 +26,11 @@ def display_query_results(provides, all_results, context):
             header_data = result.get_data()
 
     if header_data:
-        headers += header_data[0].keys()
+        for header_datum in header_data:
+            headers_set.update(header_datum.keys())
 
-    if not headers_set:
-        headers_set.update(headers)
+    # if not headers_set:
+    #     headers_set.update(headers)
     headers = sorted(headers_set)
 
     context['ajax'] = True
