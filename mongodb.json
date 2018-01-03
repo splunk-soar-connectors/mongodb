@@ -8,7 +8,7 @@
     "product_name": "MongoDB",
     "product_version_regex": ".*",
     "publisher": "Phantom",
-    "license": "Copyright (c) Phantom Cyber Corporation, 2017",
+    "license": "Copyright (c) Phantom Cyber Corporation, 2018",
     "app_version": "1.0.1",
     "utctime_updated": "2017-12-20T21:42:29.000000Z",
     "package_name": "phantom_mongodb",
@@ -272,7 +272,7 @@
             "action": "update data",
             "identifier": "update_data",
             "description": "Update documents which match a given filter",
-            "verbose": "All documents which matche the <b>filter</b> parameter will be updated.",
+            "verbose": "All documents which match the <b>filter</b> parameter will be updated.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -475,8 +475,6 @@
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 0,
                     "example_values": [
                         "success"
                     ]
