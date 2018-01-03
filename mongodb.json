@@ -272,7 +272,7 @@
             "action": "update data",
             "identifier": "update_data",
             "description": "Update documents which match a given filter",
-            "verbose": "All documents which matche the <b>filter</b> parameter will be updated.",
+            "verbose": "All documents which match the <b>filter</b> parameter will be updated.",
             "type": "generic",
             "read_only": false,
             "parameters": {
