@@ -378,7 +378,7 @@
             "action": "delete data",
             "identifier": "delete_data",
             "description": "Delete documents which match a given filter",
-            "verbose": "All documents which matche the <b>filter</b> parameter will be deleted.",
+            "verbose": "All documents which match the <b>filter</b> parameter will be deleted.",
             "type": "generic",
             "read_only": false,
             "parameters": {
