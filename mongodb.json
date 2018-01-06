@@ -1,0 +1,527 @@
+{
+    "appid": "2fc28a82-a03c-42cc-a797-60faa53ea976",
+    "name": "MongoDB",
+    "description": "This app supports CRUD operations in a MongoDB database",
+    "type": "information",
+    "product_vendor": "MongoDB",
+    "logo": "logo_mongodb.svg",
+    "logo_dark": "logo_mongodb_dark.svg",
+    "product_name": "MongoDB",
+    "product_version_regex": ".*",
+    "publisher": "Phantom",
+    "license": "Copyright (c) Phantom Cyber Corporation, 2018",
+    "app_version": "1.0.4",
+    "utctime_updated": "2018-01-05T19:29:51.000000Z",
+    "package_name": "phantom_mongodb",
+    "main_module": "mongodb_connector.pyc",
+    "min_phantom_version": "3.0.251",
+    "app_wizard_version": "1.0.0",
+    "pip_dependencies": {
+        "wheel": [
+            {
+                "module": "pymongo",
+                "input_file": "pymongo/pymongo-3.6.0-cp27-cp27mu-manylinux1_x86_64.whl"
+            }
+        ]
+    },
+    "configuration": {
+        "host": {
+            "description": "Host, Including Port Number",
+            "data_type": "string",
+            "required": true,
+            "order": 0
+        },
+        "database": {
+            "description": "Database",
+            "data_type": "string",
+            "required": true,
+            "order": 1
+        },
+        "username": {
+            "description": "Username",
+            "data_type": "string",
+            "required": false,
+            "order": 2
+        },
+        "password": {
+            "description": "Password",
+            "data_type": "password",
+            "required": false,
+            "order": 3
+        },
+        "auth_fields": {
+            "description": "JSON String for Other Authentication Fields",
+            "data_type": "string",
+            "required": false,
+            "order": 4
+        }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "post data",
+            "identifier": "post_data",
+            "description": "Add data to the database",
+            "verbose": "",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "collection": {
+                    "description": "Collection",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "order": 0
+                },
+                "data": {
+                    "description": "Data to add, as a JSON string",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "order": 1
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.collection",
+                    "data_type": "string",
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "example_values": [
+                        "collection3"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.data",
+                    "data_type": "string",
+                    "example_values": [
+                        "{\"column1\": \"value1\", \"column2\": \"value2\", \"_id\": 1}",
+                        "[{\"col1\": \"val1\"}, {\"col1\": \"val1\"}]",
+                        "{\"column1\": \"value1\", \"column2\": \"value2\"}"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*._id",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ],
+                    "column_name": "New IDs",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*._id.$oid",
+                    "data_type": "string",
+                    "example_values": [
+                        "5a345b47f059c578423564b4"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Successfully added to database"
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get data",
+            "identifier": "get_data",
+            "description": "Get data from the database",
+            "verbose": "By leaving the <b>filter</b> parameter blank, all documents in the collection will be returned.",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "collection": {
+                    "description": "Collection",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "order": 0
+                },
+                "filter": {
+                    "description": "Filter for documents",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "order": 1
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.collection",
+                    "data_type": "string",
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "example_values": [
+                        "collection3"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.filter",
+                    "data_type": "string",
+                    "example_values": [
+                        "{\"_id\": {\"$oid\": \"5a345b47f059c578423564b4\"}}"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*._id",
+                    "data_type": "string",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*._id.$oid",
+                    "data_type": "string",
+                    "example_values": [
+                        "5a345b47f059c578423564b4"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Successfully got data"
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "view": "mongodb_view.display_query_results"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "update data",
+            "identifier": "update_data",
+            "description": "Update documents which match a given filter",
+            "verbose": "All documents which match the <b>filter</b> parameter will be updated.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "collection": {
+                    "description": "Collection",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "order": 0
+                },
+                "filter": {
+                    "description": "Update all documents matching this filter",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "order": 1
+                },
+                "update": {
+                    "description": "The updates to apply",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "order": 2
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.collection",
+                    "data_type": "string",
+                    "example_values": [
+                        "collection3"
+                    ],
+                    "contains": [
+                        "mongodb collection"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.filter",
+                    "data_type": "string",
+                    "example_values": [
+                        "{\"_id\": {\"$oid\":\"5a345190f059c57581d754f0\"}}"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.update",
+                    "data_type": "string",
+                    "example_values": [
+                        "{\"$set\": {\"column1\": \"updated value 1 (again)\"}}"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.modified_count",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ],
+                    "column_name": "Modified Count",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Successfully updated data"
+                    ],
+                    "column_name": "Message",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "versions": "EQ(*)",
+            "render": {
+                "width": 12,
+                "title": "Update Data",
+                "type": "table",
+                "height": 5
+            }
+        },
+        {
+            "action": "delete data",
+            "identifier": "delete_data",
+            "description": "Delete documents which match a given filter",
+            "verbose": "All documents which match the <b>filter</b> parameter will be deleted.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "collection": {
+                    "description": "Collection",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "order": 0
+                },
+                "filter": {
+                    "description": "Delete all documents matching this filter",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "order": 1
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.collection",
+                    "data_type": "string",
+                    "example_values": [
+                        "collection3"
+                    ],
+                    "contains": [
+                        "mongodb collection"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.filter",
+                    "data_type": "string",
+                    "example_values": [
+                        "{\"_id\": {\"$oid\":\"5a345b47f059c578423564b4\"}}"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.deleted_count",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ],
+                    "column_name": "Deleted Count",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Successfully deleted data"
+                    ],
+                    "column_name": "Message",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "versions": "EQ(*)",
+            "render": {
+                "type": "table"
+            }
+        },
+        {
+            "action": "list tables",
+            "identifier": "list_tables",
+            "description": "List all the collections in the database",
+            "verbose": "",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {},
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.collection",
+                    "data_type": "string",
+                    "example_values": [
+                        "testcollect"
+                    ],
+                    "contains": [
+                        "mongodb collection"
+                    ],
+                    "column_name": "Collection Name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Successfully listed collections"
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        }
+    ]
+}
