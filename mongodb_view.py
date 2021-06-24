@@ -1,16 +1,10 @@
-# --
 # File: mongodb_view.py
 #
-# Copyright (c) Phantom Cyber Corporation, 2018
+# Copyright (c) 2018-2021 Splunk Inc.
 #
-# This unpublished material is proprietary to Phantom Cyber.
-# All rights reserved. The methods and
-# techniques described herein are considered trade secrets
-# and/or confidential. Reproduction or distribution, in whole
-# or in part, is forbidden except by express written permission
-# of Phantom Cyber.
+# SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
+# without a valid written license from Splunk Inc. is PROHIBITED.
 #
-# --
 
 from django.http import HttpResponse
 import json
@@ -27,7 +21,7 @@ def display_query_results(provides, all_results, context):
 
     if header_data:
         for header_datum in header_data:
-            headers_set.update(header_datum.keys())
+            headers_set.update(list(header_datum.keys()))
 
     headers = sorted(headers_set)
 

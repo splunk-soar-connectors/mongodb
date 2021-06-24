@@ -1,14 +1,10 @@
 <!--
     File: readme.html
 
-    Copyright (c) Phantom Cyber Corporation, 2018
+    Copyright (c) 2018-2021 Splunk Inc.
 
-    This unpublished material is proprietary to Phantom Cyber.
-    All rights reserved. The methods and
-    techniques described herein are considered trade secrets
-    and/or confidential. Reproduction or distribution, in whole
-    or in part, is forbidden except by express written permission
-    of Phantom Cyber.
+    SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
+    without a valid written license from Splunk Inc. is PROHIBITED.
 -->
 <p>
 This app will ignore the HTTP_PROXY and HTTPS_PROXY environment variables, as it does not use HTTP to connect to the database.
@@ -31,4 +27,9 @@ In order to use this, like to create a filter, the BSON string will look like <c
 If you can install the appropriate python modules (i.e. pymongo) then you can serialize python dictionaries to the appropriate string
 in your playbook code.  If that approach isn't possible, the result data from <b>get data</b> will contain the appropriate
 representations, as well, which can be used as reference for future actions.
+</p>
+
+<p>
+	<h2>PyMongo</h2>
+	This app uses the PyMongo module, written by Bernie Hackett and is licensed under the Apache Software License, Version 2.0, Copyright (2021) The Apache Software Foundation (http://www.apache.org/).
 </p>
