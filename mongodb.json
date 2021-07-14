@@ -24,7 +24,7 @@
         "wheel": [
             {
                 "module": "pymongo",
-                "input_file": "pymongo/pymongo-3.11.3-cp36-cp36m-manylinux1_x86_64.whl"
+                "input_file": "pymongo/pymongo-3.6.0-cp27-cp27mu-manylinux1_x86_64.whl"
             }
         ]
     },
@@ -32,7 +32,7 @@
         "wheel": [
             {
                 "module": "pymongo",
-                "input_file": "pymongo/pymongo-3.6.0-cp27-cp27mu-manylinux1_x86_64.whl"
+                "input_file": "pymongo/pymongo-3.11.3-cp36-cp36m-manylinux1_x86_64.whl"
             }
         ]
     },
