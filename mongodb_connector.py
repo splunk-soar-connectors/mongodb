@@ -136,7 +136,8 @@ class MongodbConnector(BaseConnector):
         if phantom.is_fail(ret_val):
             return ret_val
 
-        for result in self._db[collection].find(query):
+        query_results = self._db[collection].find(query)
+        for result in query_results:
             try:
                 action_result.add_data(
                     self._encode_to_json_dict(result)
@@ -146,7 +147,15 @@ class MongodbConnector(BaseConnector):
                     phantom.APP_ERROR, "Error serializing query results", e
                 )
 
-        return action_result.set_status(phantom.APP_SUCCESS, "Successfully got data")
+        try:
+            record_count = query_results.count()
+        except Exception as e:
+            return action_result.set_status(
+                phantom.APP_ERROR, "Error returning record count from query", e
+            )
+
+        action_result.update_summary({'total_records': record_count, 'message': 'Successfully got data'})
+        return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_delete_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))

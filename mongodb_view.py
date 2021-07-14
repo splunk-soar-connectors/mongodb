@@ -6,58 +6,32 @@
 # without a valid written license from Splunk Inc. is PROHIBITED.
 #
 
-from django.http import HttpResponse
-import json
-
 
 def display_query_results(provides, all_results, context):
 
     headers = []
+    context['results'] = results = []
 
     headers_set = set()
     for summary, action_results in all_results:
         for result in action_results:
-            header_data = result.get_data()
+            for record in result.get_data():
+                headers_set.update(record.keys())
 
-    if header_data:
-        for header_datum in header_data:
-            headers_set.update(list(header_datum.keys()))
+    if not headers_set:
+        headers_set.update(headers)
+    headers.extend(headers_set)
+    headers.sort(key=str.lower)
+    final_result = {'headers': headers, 'data': []}
 
-    headers = sorted(headers_set)
-
-    context['ajax'] = True
-    if 'start' not in context['QS']:
-        context['headers'] = headers
-        return '/widgets/generic_table.html'
-
-    adjusted_names = {}
-
-    start = int(context['QS']['start'][0])
-    length = int(context['QS'].get('length', ['5'])[0])
-    end = start + length
-    cur_pos = 0
-    rows = []
-    total = 0
     for summary, action_results in all_results:
         for result in action_results:
             data = result.get_data()
-            total += len(data)
             for item in data:
-                cur_pos += 1
-                if (cur_pos - 1) < start:
-                    continue
-                if (cur_pos - 1) >= end:
-                    break
                 row = []
+                for header in headers:
+                    row.append(item.get(header, ''))
+                final_result['data'].append(row)
 
-                for h in headers:
-                    row.append({ 'value': item.get(adjusted_names.get(h, h)) })
-                rows.append(row)
-
-    content = {
-        "data": rows,
-        "recordsTotal": total,
-        "recordsFiltered": total,
-    }
-
-    return HttpResponse(json.dumps(content), content_type='text/javascript')
+    results.append(final_result)
+    return 'display_results.html'
