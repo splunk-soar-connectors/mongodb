@@ -1,17 +1,11 @@
-# --
 # File: mongodb_connector.py
+# Copyright (c) 2018-2021 Splunk Inc.
 #
-# Copyright (c) Phantom Cyber Corporation, 2018
+# SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
+# without a valid written license from Splunk Inc. is PROHIBITED.
 #
-# This unpublished material is proprietary to Phantom Cyber.
-# All rights reserved. The methods and
-# techniques described herein are considered trade secrets
-# and/or confidential. Reproduction or distribution, in whole
-# or in part, is forbidden except by express written permission
-# of Phantom Cyber.
-#
-# --
 
+# phantom imports
 import phantom.app as phantom
 from phantom.base_connector import BaseConnector
 from phantom.action_result import ActionResult
@@ -142,7 +136,8 @@ class MongodbConnector(BaseConnector):
         if phantom.is_fail(ret_val):
             return ret_val
 
-        for result in self._db[collection].find(query):
+        query_results = self._db[collection].find(query)
+        for result in query_results:
             try:
                 action_result.add_data(
                     self._encode_to_json_dict(result)
@@ -152,7 +147,15 @@ class MongodbConnector(BaseConnector):
                     phantom.APP_ERROR, "Error serializing query results", e
                 )
 
-        return action_result.set_status(phantom.APP_SUCCESS, "Successfully got data")
+        try:
+            record_count = query_results.count()
+        except Exception as e:
+            return action_result.set_status(
+                phantom.APP_ERROR, "Error returning record count from query", e
+            )
+
+        action_result.update_summary({'total_records': record_count, 'message': 'Successfully got data'})
+        return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_delete_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
@@ -288,9 +291,7 @@ class MongodbConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
 
-if __name__ == '__main__':
-
-    import sys
+def main():
     import pudb
     import argparse
 
@@ -308,16 +309,18 @@ if __name__ == '__main__':
     username = args.username
     password = args.password
 
-    if (username is not None and password is None):
+    if username is not None and password is None:
 
         # User specified a username but not a password, so ask
         import getpass
         password = getpass.getpass("Password: ")
 
-    if (username and password):
+    if username and password:
         try:
-            print ("Accessing the Login page")
-            r = requests.get("https://127.0.0.1/login", verify=False)
+            login_url = MongodbConnector._get_phantom_base_url() + '/login'
+
+            print("Accessing the Login page")
+            r = requests.get(login_url, verify=False)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -327,20 +330,16 @@ if __name__ == '__main__':
 
             headers = dict()
             headers['Cookie'] = 'csrftoken=' + csrftoken
-            headers['Referer'] = 'https://127.0.0.1/login'
+            headers['Referer'] = login_url
 
-            print ("Logging into Platform to get the session id")
-            r2 = requests.post("https://127.0.0.1/login", verify=False, data=data, headers=headers)
+            print("Logging into Platform to get the session id")
+            r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
-            print ("Unable to get session id from the platfrom. Error: " + str(e))
+            print("Unable to get session id from the platform. Error: " + str(e))
             exit(1)
 
-    if (len(sys.argv) < 2):
-        print "No test json specified as input"
-        exit(0)
-
-    with open(sys.argv[1]) as f:
+    with open(args.input_test_json) as f:
         in_json = f.read()
         in_json = json.loads(in_json)
         print(json.dumps(in_json, indent=4))
@@ -348,10 +347,15 @@ if __name__ == '__main__':
         connector = MongodbConnector()
         connector.print_progress_message = True
 
-        if (session_id is not None):
+        if session_id is not None:
             in_json['user_session_token'] = session_id
+            connector._set_csrf_info(csrftoken, headers['Referer'])
 
         ret_val = connector._handle_action(json.dumps(in_json), None)
-        print (json.dumps(json.loads(ret_val), indent=4))
+        print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
+
+
+if __name__ == '__main__':
+    main()

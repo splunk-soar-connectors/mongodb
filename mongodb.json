@@ -8,19 +8,31 @@
     "logo_dark": "logo_mongodb_dark.svg",
     "product_name": "MongoDB",
     "product_version_regex": ".*",
-    "publisher": "Phantom",
-    "license": "Copyright (c) Phantom Cyber Corporation, 2018",
-    "app_version": "1.0.4",
-    "utctime_updated": "2018-01-05T19:29:51.000000Z",
+    "publisher": "Splunk",
+    "license": "Copyright (c) 2018-2021 Splunk Inc.",
+    "app_version": "2.0.4",
+    "utctime_updated": "2021-07-23T21:33:03.000000Z",
     "package_name": "phantom_mongodb",
-    "main_module": "mongodb_connector.pyc",
-    "min_phantom_version": "3.0.251",
+    "main_module": "mongodb_connector.py",
+    "python_version": "3",
+    "min_phantom_version": "4.9.39220",
+    "latest_tested_versions": [
+        "On-prem db version v3.6.0"
+    ],
     "app_wizard_version": "1.0.0",
     "pip_dependencies": {
         "wheel": [
             {
                 "module": "pymongo",
                 "input_file": "pymongo/pymongo-3.6.0-cp27-cp27mu-manylinux1_x86_64.whl"
+            }
+        ]
+    },
+    "pip3_dependencies": {
+        "wheel": [
+            {
+                "module": "pymongo",
+                "input_file": "pymongo/pymongo-3.11.3-cp36-cp36m-manylinux1_x86_64.whl"
             }
         ]
     },
