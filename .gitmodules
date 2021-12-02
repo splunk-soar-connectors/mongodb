@@ -1,4 +1,0 @@
-[submodule "pymongo"]
-	path = pymongo
-	url = git@cd.splunkdev.com:phantom-external/pymongo.git
-	ignore = dirty
