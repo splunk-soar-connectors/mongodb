@@ -23,16 +23,56 @@
     "pip_dependencies": {
         "wheel": [
             {
+                "module": "certifi",
+                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
                 "module": "pymongo",
                 "input_file": "pymongo/pymongo-3.6.0-cp27-cp27mu-manylinux1_x86_64.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.7-py2.py3-none-any.whl"
             }
         ]
     },
     "pip3_dependencies": {
         "wheel": [
             {
+                "module": "certifi",
+                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
                 "module": "pymongo",
-                "input_file": "pymongo/pymongo-3.11.3-cp36-cp36m-manylinux1_x86_64.whl"
+                "input_file": "wheels/py3/pymongo-3.6.0-cp36-cp36m-manylinux1_x86_64.manylinux_2_5_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.7-py2.py3-none-any.whl"
             }
         ]
     },
