@@ -1,5 +1,5 @@
 Splunk SOAR MongoDB
-Copyright 2021 Splunk Inc.
+Copyright (c) 2018-2021 Splunk Inc.
 
 Third-party Software Attributions:
 
@@ -7,13 +7,8 @@ Library: pymongo
 Version: 3.6.0
 License: Apache 2.0
 Copyright 2001 Unicode, Inc
-Copyright 2007-2010 Michael G Schwern
 Copyright 2006-2013 Alexander Chemeris
-
-Library: pudb
-Version: 2019.2
-License: MIT
-Copyright 2009 Andreas Kloeckner and contributors
+Copyright 2007-2010 Michael G Schwern
 
 Library: requests
 Version: 2.25.0
