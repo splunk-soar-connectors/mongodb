@@ -9,12 +9,13 @@
     "product_name": "MongoDB",
     "product_version_regex": ".*",
     "publisher": "Splunk",
-    "license": "Copyright (c) 2018-2021 Splunk Inc.",
+    "license": "Copyright (c) 2018-2022 Splunk Inc.",
     "app_version": "2.0.5",
     "utctime_updated": "2022-01-07T21:29:46.000000Z",
     "package_name": "phantom_mongodb",
     "main_module": "mongodb_connector.py",
     "python_version": "3",
+    "fips_compliant": true,
     "min_phantom_version": "4.9.39220",
     "latest_tested_versions": [
         "On-prem db version v3.6.0"
