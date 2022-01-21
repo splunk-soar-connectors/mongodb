@@ -16,7 +16,6 @@
 #
 # phantom imports
 import json
-from socket import timeout
 
 import phantom.app as phantom
 import requests
