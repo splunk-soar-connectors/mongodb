@@ -15,16 +15,17 @@
 #
 #
 # phantom imports
-import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
-
 import json
-import pymongo
+
+import phantom.app as phantom
 import requests
 # NOTE: These two imports may cause pylint to crash on this file
 from bson.json_util import dumps as bson_dumps
 from bson.json_util import loads as bson_loads
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
+
+import pymongo
 
 
 class RetVal(tuple):
@@ -301,8 +302,9 @@ class MongodbConnector(BaseConnector):
 
 
 def main():
-    import pudb
     import argparse
+
+    import pudb
 
     pudb.set_trace()
 
