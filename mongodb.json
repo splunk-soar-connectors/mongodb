@@ -114,7 +114,6 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -125,7 +124,6 @@
             "action": "post data",
             "identifier": "post_data",
             "description": "Add data to the database",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -521,7 +519,6 @@
             "action": "list tables",
             "identifier": "list_tables",
             "description": "List all the collections in the database",
-            "verbose": "",
             "type": "investigate",
             "read_only": true,
             "parameters": {},
