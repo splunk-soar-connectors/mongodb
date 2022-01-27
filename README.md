@@ -2,16 +2,16 @@
 # MongoDB
 
 Publisher: Splunk  
-Connector Version: 2\.0\.4  
+Connector Version: 2\.0\.7  
 Product Vendor: MongoDB  
 Product Name: MongoDB  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 4\.9\.39220  
+Minimum Product Version: 5\.1\.0  
 
 This app supports CRUD operations in a MongoDB database
 
-[comment]: # "    File: readme.md"
-[comment]: # "    Copyright (c) 2018-2021 Splunk Inc."
+[comment]: # "    File: README.md"
+[comment]: # "    Copyright (c) 2018-2022 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
