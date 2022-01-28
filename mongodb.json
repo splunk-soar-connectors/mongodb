@@ -9,13 +9,14 @@
     "product_name": "MongoDB",
     "product_version_regex": ".*",
     "publisher": "Splunk",
-    "license": "Copyright (c) 2018-2021 Splunk Inc.",
-    "app_version": "2.0.5",
-    "utctime_updated": "2021-07-23T23:13:36.000000Z",
+    "license": "Copyright (c) 2018-2022 Splunk Inc.",
+    "app_version": "2.0.7",
+    "utctime_updated": "2022-01-27T22:10:18.000000Z",
     "package_name": "phantom_mongodb",
     "main_module": "mongodb_connector.py",
     "python_version": "3",
-    "min_phantom_version": "4.9.39220",
+    "fips_compliant": true,
+    "min_phantom_version": "5.1.0",
     "latest_tested_versions": [
         "On-prem db version v3.6.0"
     ],
@@ -23,16 +24,28 @@
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "pymongo",
-                "input_file": "pymongo/pymongo-3.6.0-cp27-cp27mu-manylinux1_x86_64.whl"
-            }
-        ]
-    },
-    "pip3_dependencies": {
-        "wheel": [
+                "module": "certifi",
+                "input_file": "wheels/certifi-2021.10.8-py2.py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/idna-2.10-py2.py3-none-any.whl"
+            },
             {
                 "module": "pymongo",
-                "input_file": "pymongo/pymongo-3.11.3-cp36-cp36m-manylinux1_x86_64.whl"
+                "input_file": "wheels/pymongo-3.9.0-cp36-cp36m-manylinux1_x86_64.manylinux_2_5_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/urllib3-1.26.8-py2.py3-none-any.whl"
             }
         ]
     },
@@ -73,7 +86,6 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -84,7 +96,6 @@
             "action": "post data",
             "identifier": "post_data",
             "description": "Add data to the database",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -111,7 +122,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2,
+                    "column_order": 1,
                     "example_values": [
                         "success"
                     ]
@@ -213,7 +224,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2,
+                    "column_order": 0,
                     "example_values": [
                         "success"
                     ]
@@ -480,7 +491,6 @@
             "action": "list tables",
             "identifier": "list_tables",
             "description": "List all the collections in the database",
-            "verbose": "",
             "type": "investigate",
             "read_only": true,
             "parameters": {},
