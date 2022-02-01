@@ -28,12 +28,12 @@
                 "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
             },
             {
-                "module": "charset_normalizer",
-                "input_file": "wheels/py3/charset_normalizer-2.0.11-py3-none-any.whl"
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
             },
             {
                 "module": "idna",
-                "input_file": "wheels/py3/idna-3.3-py3-none-any.whl"
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
             },
             {
                 "module": "pymongo",
@@ -41,7 +41,7 @@
             },
             {
                 "module": "requests",
-                "input_file": "wheels/shared/requests-2.26.0-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
             },
             {
                 "module": "urllib3",
@@ -553,12 +553,12 @@
                 "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
             },
             {
-                "module": "charset_normalizer",
-                "input_file": "wheels/py3/charset_normalizer-2.0.11-py3-none-any.whl"
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
             },
             {
                 "module": "idna",
-                "input_file": "wheels/py3/idna-3.3-py3-none-any.whl"
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
             },
             {
                 "module": "pymongo",
@@ -566,7 +566,7 @@
             },
             {
                 "module": "requests",
-                "input_file": "wheels/shared/requests-2.26.0-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
             },
             {
                 "module": "urllib3",
