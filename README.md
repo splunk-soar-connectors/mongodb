@@ -2,7 +2,7 @@
 # MongoDB
 
 Publisher: Splunk  
-Connector Version: 2\.0\.7  
+Connector Version: 2\.0\.8  
 Product Vendor: MongoDB  
 Product Name: MongoDB  
 Product Version Supported (regex): "\.\*"  
