@@ -9,8 +9,8 @@
     "product_name": "MongoDB",
     "product_version_regex": ".*",
     "publisher": "Splunk",
-    "license": "Copyright (c) 2018-2022 Splunk Inc.",
-    "app_version": "2.0.8",
+    "license": "Copyright (c) 2018-2023 Splunk Inc.",
+    "app_version": "2.0.9",
     "utctime_updated": "2022-02-01T22:12:38.000000Z",
     "package_name": "phantom_mongodb",
     "main_module": "mongodb_connector.py",
@@ -24,28 +24,8 @@
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "certifi",
-                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
-            },
-            {
-                "module": "chardet",
-                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
-            },
-            {
-                "module": "idna",
-                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
-            },
-            {
                 "module": "pymongo",
                 "input_file": "wheels/py36/pymongo-3.9.0-cp36-cp36m-manylinux1_x86_64.manylinux_2_5_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
-            },
-            {
-                "module": "requests",
-                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
-            },
-            {
-                "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.8-py2.py3-none-any.whl"
             }
         ]
     },
@@ -549,28 +529,8 @@
     "pip39_dependencies": {
         "wheel": [
             {
-                "module": "certifi",
-                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
-            },
-            {
-                "module": "chardet",
-                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
-            },
-            {
-                "module": "idna",
-                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
-            },
-            {
                 "module": "pymongo",
                 "input_file": "wheels/py39/pymongo-3.9.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
-            },
-            {
-                "module": "requests",
-                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
-            },
-            {
-                "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.8-py2.py3-none-any.whl"
             }
         ]
     }
