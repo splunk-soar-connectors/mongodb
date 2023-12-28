@@ -1,6 +1,6 @@
 # File: mongodb_connector.py
 #
-# Copyright (c) 2018-2022 Splunk Inc.
+# Copyright (c) 2018-2023 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -92,6 +92,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_post_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
         collection = param['collection']
         try:
             data = bson_loads(param['data'])
@@ -99,7 +100,7 @@ class MongodbConnector(BaseConnector):
             return action_result.set_status(
                 phantom.APP_ERROR, "Unable to load data", e
             )
-
+        self.save_progress("Inserting data...")
         if isinstance(data, list):
             add_method = self._db[collection].insert_many
         elif isinstance(data, dict):
@@ -132,6 +133,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_get_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
         collection = param['collection']
         query = param.get('filter')
         if query:
@@ -145,7 +147,7 @@ class MongodbConnector(BaseConnector):
         ret_val = self._check_collection(action_result, collection)
         if phantom.is_fail(ret_val):
             return ret_val
-
+        self.save_progress("Fetching data...")
         query_results = self._db[collection].find(query)
         for result in query_results:
             try:
@@ -169,6 +171,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_delete_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
         collection = param['collection']
         query = param['filter']
         try:
@@ -177,7 +180,7 @@ class MongodbConnector(BaseConnector):
             return action_result.set_status(
                 phantom.APP_ERROR, "Unable to load filter", e
             )
-
+        self.save_progress("Deleting data...")
         try:
             results = self._db[collection].delete_many(query)
         except Exception as e:
@@ -195,6 +198,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_update_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
         collection = param['collection']
         data = param['update']
         query = param['filter']
@@ -216,7 +220,7 @@ class MongodbConnector(BaseConnector):
         ret_val = self._check_collection(action_result, collection)
         if phantom.is_fail(ret_val):
             return ret_val
-
+        self.save_progress("Updating data...")
         try:
             results = self._db[collection].update_many(query, data)
         except Exception as e:
@@ -230,6 +234,8 @@ class MongodbConnector(BaseConnector):
 
     def _handle_list_tables(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("Fetching data...")
         collections = self._db.collection_names(include_system_collections=False)
         for collection in collections:
             action_result.add_data({"collection": collection})

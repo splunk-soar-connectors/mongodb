@@ -2,16 +2,16 @@
 # MongoDB
 
 Publisher: Splunk  
-Connector Version: 2\.0\.8  
+Connector Version: 2.0.9  
 Product Vendor: MongoDB  
 Product Name: MongoDB  
-Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.1\.0  
+Product Version Supported (regex): ".\*"  
+Minimum Product Version: 5.1.0  
 
 This app supports CRUD operations in a MongoDB database
 
 [comment]: # "    File: README.md"
-[comment]: # "    Copyright (c) 2018-2022 Splunk Inc."
+[comment]: # "    Copyright (c) 2018-2023 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
@@ -65,7 +65,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 **database** |  required  | string | Database
 **username** |  optional  | string | Username
 **password** |  optional  | password | Password
-**auth\_fields** |  optional  | string | JSON String for Other Authentication Fields
+**auth_fields** |  optional  | string | JSON String for Other Authentication Fields
 
 ### Supported Actions  
 [test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration  
@@ -100,17 +100,17 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **data** |  required  | Data to add, as a JSON string | string | 
 
 #### Action Output
-DATA PATH | TYPE | CONTAINS
---------- | ---- | --------
-action\_result\.status | string | 
-action\_result\.parameter\.collection | string |  `mongodb collection` 
-action\_result\.parameter\.data | string | 
-action\_result\.data\.\*\.\_id | numeric | 
-action\_result\.data\.\*\.\_id\.$oid | string | 
-action\_result\.summary | string | 
-action\_result\.message | string | 
-summary\.total\_objects | numeric | 
-summary\.total\_objects\_successful | numeric |   
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success 
+action_result.parameter.collection | string |  `mongodb collection`  |   collection3 
+action_result.parameter.data | string |  |   {"column1": "value1", "column2": "value2", "_id": 1}  [{"col1": "val1"}, {"col1": "val1"}]  {"column1": "value1", "column2": "value2"} 
+action_result.data.\*._id | numeric |  |   1 
+action_result.data.\*._id.$oid | string |  |   5a345b47f059c578423564b4 
+action_result.summary | string |  |  
+action_result.message | string |  |   Successfully added to database 
+summary.total_objects | numeric |  |   1 
+summary.total_objects_successful | numeric |  |   1   
 
 ## action: 'get data'
 Get data from the database
@@ -118,7 +118,7 @@ Get data from the database
 Type: **investigate**  
 Read only: **True**
 
-By leaving the <b>filter</b> parameter blank, all documents in the collection will be returned\.
+By leaving the <b>filter</b> parameter blank, all documents in the collection will be returned.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -127,17 +127,17 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **filter** |  optional  | Filter for documents | string | 
 
 #### Action Output
-DATA PATH | TYPE | CONTAINS
---------- | ---- | --------
-action\_result\.status | string | 
-action\_result\.parameter\.collection | string |  `mongodb collection` 
-action\_result\.parameter\.filter | string | 
-action\_result\.data\.\*\.\_id | string | 
-action\_result\.data\.\*\.\_id\.$oid | string | 
-action\_result\.summary | string | 
-action\_result\.message | string | 
-summary\.total\_objects | numeric | 
-summary\.total\_objects\_successful | numeric |   
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success 
+action_result.parameter.collection | string |  `mongodb collection`  |   collection3 
+action_result.parameter.filter | string |  |   {"_id": {"$oid": "5a345b47f059c578423564b4"}} 
+action_result.data.\*._id | string |  |   1 
+action_result.data.\*._id.$oid | string |  |   5a345b47f059c578423564b4 
+action_result.summary | string |  |  
+action_result.message | string |  |   Successfully got data 
+summary.total_objects | numeric |  |   1 
+summary.total_objects_successful | numeric |  |   1   
 
 ## action: 'update data'
 Update documents which match a given filter
@@ -145,7 +145,7 @@ Update documents which match a given filter
 Type: **generic**  
 Read only: **False**
 
-All documents which match the <b>filter</b> parameter will be updated\.
+All documents which match the <b>filter</b> parameter will be updated.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -155,16 +155,16 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **update** |  required  | The updates to apply | string | 
 
 #### Action Output
-DATA PATH | TYPE | CONTAINS
---------- | ---- | --------
-action\_result\.status | string | 
-action\_result\.parameter\.collection | string |  `mongodb collection` 
-action\_result\.parameter\.filter | string | 
-action\_result\.parameter\.update | string | 
-action\_result\.summary\.modified\_count | numeric | 
-action\_result\.message | string | 
-summary\.total\_objects | numeric | 
-summary\.total\_objects\_successful | numeric |   
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success 
+action_result.parameter.collection | string |  `mongodb collection`  |   collection3 
+action_result.parameter.filter | string |  |   {"_id": {"$oid":"5a345190f059c57581d754f0"}} 
+action_result.parameter.update | string |  |   {"$set": {"column1": "updated value 1 (again)"}} 
+action_result.summary.modified_count | numeric |  |   1 
+action_result.message | string |  |   Successfully updated data 
+summary.total_objects | numeric |  |   1 
+summary.total_objects_successful | numeric |  |   1   
 
 ## action: 'delete data'
 Delete documents which match a given filter
@@ -172,7 +172,7 @@ Delete documents which match a given filter
 Type: **generic**  
 Read only: **False**
 
-All documents which match the <b>filter</b> parameter will be deleted\.
+All documents which match the <b>filter</b> parameter will be deleted.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -181,15 +181,15 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **filter** |  required  | Delete all documents matching this filter | string | 
 
 #### Action Output
-DATA PATH | TYPE | CONTAINS
---------- | ---- | --------
-action\_result\.status | string | 
-action\_result\.parameter\.collection | string |  `mongodb collection` 
-action\_result\.parameter\.filter | string | 
-action\_result\.summary\.deleted\_count | numeric | 
-action\_result\.message | string | 
-summary\.total\_objects | numeric | 
-summary\.total\_objects\_successful | numeric |   
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success 
+action_result.parameter.collection | string |  `mongodb collection`  |   collection3 
+action_result.parameter.filter | string |  |   {"_id": {"$oid":"5a345b47f059c578423564b4"}} 
+action_result.summary.deleted_count | numeric |  |   1 
+action_result.message | string |  |   Successfully deleted data 
+summary.total_objects | numeric |  |   1 
+summary.total_objects_successful | numeric |  |   1   
 
 ## action: 'list tables'
 List all the collections in the database
@@ -201,11 +201,11 @@ Read only: **True**
 No parameters are required for this action
 
 #### Action Output
-DATA PATH | TYPE | CONTAINS
---------- | ---- | --------
-action\_result\.status | string | 
-action\_result\.data\.\*\.collection | string |  `mongodb collection` 
-action\_result\.summary | string | 
-action\_result\.message | string | 
-summary\.total\_objects | numeric | 
-summary\.total\_objects\_successful | numeric | 
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success 
+action_result.data.\*.collection | string |  `mongodb collection`  |   testcollect 
+action_result.summary | string |  |  
+action_result.message | string |  |   Successfully listed collections 
+summary.total_objects | numeric |  |   1 
+summary.total_objects_successful | numeric |  |   1 
