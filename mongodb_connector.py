@@ -19,6 +19,7 @@ import json
 
 import phantom.app as phantom
 import requests
+
 # NOTE: These two imports may cause pylint to crash on this file
 from bson.json_util import dumps as bson_dumps
 from bson.json_util import loads as bson_loads
