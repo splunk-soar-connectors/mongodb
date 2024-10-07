@@ -10,8 +10,8 @@
     "product_version_regex": ".*",
     "publisher": "Splunk",
     "license": "Copyright (c) 2018-2023 Splunk Inc.",
-    "app_version": "2.0.9",
-    "utctime_updated": "2022-02-01T22:12:38.000000Z",
+    "app_version": "2.0.10",
+    "utctime_updated": "2024-10-07T15:35:04.000000Z",
     "package_name": "phantom_mongodb",
     "main_module": "mongodb_connector.py",
     "python_version": "3",
@@ -21,14 +21,6 @@
         "On-prem db version v3.6.0"
     ],
     "app_wizard_version": "1.0.0",
-    "pip_dependencies": {
-        "wheel": [
-            {
-                "module": "pymongo",
-                "input_file": "wheels/py36/pymongo-3.9.0-cp36-cp36m-manylinux1_x86_64.manylinux_2_5_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
-            }
-        ]
-    },
     "configuration": {
         "host": {
             "description": "Host, Including Port Number",
@@ -526,11 +518,19 @@
             "versions": "EQ(*)"
         }
     ],
+    "pip_dependencies": {
+        "wheel": [
+            {
+                "module": "pymongo",
+                "input_file": "wheels/py36/pymongo-3.9.0-cp36-cp36m-manylinux1_x86_64.manylinux_2_5_x86_64.manylinux_2_28_x86_64.whl"
+            }
+        ]
+    },
     "pip39_dependencies": {
         "wheel": [
             {
                 "module": "pymongo",
-                "input_file": "wheels/py39/pymongo-3.9.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+                "input_file": "wheels/py39/pymongo-3.9.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl"
             }
         ]
     }
