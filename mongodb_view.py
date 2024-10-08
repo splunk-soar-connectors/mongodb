@@ -1,6 +1,6 @@
 # File: mongodb_view.py
 #
-# Copyright (c) 2018-2023 Splunk Inc.
+# Copyright (c) 2018-2024 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 def display_query_results(provides, all_results, context):
 
     headers = []
-    context['results'] = results = []
+    context["results"] = results = []
 
     headers_set = set()
     for summary, action_results in all_results:
@@ -27,7 +27,7 @@ def display_query_results(provides, all_results, context):
         headers_set.update(headers)
     headers.extend(headers_set)
     headers.sort(key=str.lower)
-    final_result = {'headers': headers, 'data': []}
+    final_result = {"headers": headers, "data": []}
 
     for summary, action_results in all_results:
         for result in action_results:
@@ -35,8 +35,8 @@ def display_query_results(provides, all_results, context):
             for item in data:
                 row = []
                 for header in headers:
-                    row.append(item.get(header, ''))
-                final_result['data'].append(row)
+                    row.append(item.get(header, ""))
+                final_result["data"].append(row)
 
     results.append(final_result)
-    return 'display_results.html'
+    return "display_results.html"
