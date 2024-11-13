@@ -1,3 +1,1 @@
 **Unreleased**
-
-* Updated pymongo library for vulnerability [PAPP-34917]
