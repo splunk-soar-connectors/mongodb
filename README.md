@@ -2,11 +2,11 @@
 # MongoDB
 
 Publisher: Splunk  
-Connector Version: 2.0.10  
+Connector Version: 2.0.11  
 Product Vendor: MongoDB  
 Product Name: MongoDB  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.2.1  
+Minimum Product Version: 6.3.0  
 
 This app supports CRUD operations in a MongoDB database
 
