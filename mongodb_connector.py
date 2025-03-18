@@ -1,6 +1,6 @@
 # File: mongodb_connector.py
 #
-# Copyright (c) 2018-2024 Splunk Inc.
+# Copyright (c) 2018-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,8 +21,7 @@ import phantom.app as phantom
 import requests
 
 # NOTE: These two imports may cause pylint to crash on this file
-from bson.json_util import dumps as bson_dumps
-from bson.json_util import loads as bson_loads
+from bson.json_util import dumps as bson_dumps, loads as bson_loads
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 
@@ -35,9 +34,8 @@ class RetVal(tuple):
 
 
 class MongodbConnector(BaseConnector):
-
     def __init__(self):
-        super(MongodbConnector, self).__init__()
+        super().__init__()
         self._state = None
         self._client = None
         self._db = None
@@ -69,7 +67,7 @@ class MongodbConnector(BaseConnector):
 
         self.save_progress("Getting db names")
         try:
-            db_names = self._client.database_names()  # noqa
+            db_names = self._client.database_names()
         except Exception as e:
             self.save_progress("Test connectivity failed")
             return action_result.set_status(phantom.APP_ERROR, "Error listing databases", e)
@@ -83,7 +81,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_post_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         collection = param["collection"]
         try:
             data = bson_loads(param["data"])
@@ -98,7 +96,7 @@ class MongodbConnector(BaseConnector):
             return action_result.set_status(phantom.APP_ERROR, "Unable to post data, must be either dict or list")
 
         try:
-            result = add_method(data)  # noqa
+            result = add_method(data)
         except Exception as e:
             return action_result.set_status(phantom.APP_ERROR, "Unable to add to database", e)
 
@@ -118,7 +116,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_get_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         collection = param["collection"]
         query = param.get("filter")
         if query:
@@ -148,7 +146,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_delete_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         collection = param["collection"]
         query = param["filter"]
         try:
@@ -171,7 +169,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_update_data(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         collection = param["collection"]
         data = param["update"]
         query = param["filter"]
@@ -201,7 +199,7 @@ class MongodbConnector(BaseConnector):
 
     def _handle_list_tables(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         self.save_progress("Fetching data...")
         collections = self._db.collection_names(include_system_collections=False)
         for collection in collections:
@@ -209,7 +207,6 @@ class MongodbConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS, "Successfully listed collections")
 
     def handle_action(self, param):
-
         ret_val = phantom.APP_SUCCESS
 
         # Get the action that we are supposed to execute for this App Run
@@ -263,7 +260,6 @@ class MongodbConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
     def finalize(self):
-
         # Save the state, this data is saved accross actions and app upgrades
         self.save_state(self._state)
         return phantom.APP_SUCCESS
@@ -293,7 +289,6 @@ def main():
     timeout = 30
 
     if username is not None and password is None:
-
         # User specified a username but not a password, so ask
         import getpass
 
