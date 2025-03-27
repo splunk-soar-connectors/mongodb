@@ -1,11 +1,14 @@
 Splunk SOAR MongoDB
-Copyright (c) 2018-2024 Splunk Inc.
+Copyright (c) 2018-2025 Splunk Inc.
 
-Third-party Software Attributions:
+Third Party Software Attributions:
 
-Library: pymongo
-Version: 3.9.0
-License: Apache 2.0
-Copyright 2001 Unicode, Inc
-Copyright 2006-2013 Alexander Chemeris
-Copyright 2007-2010 Michael G Schwern
+Name: dnspython
+Version: 2.7.0
+Author:
+License: ISC
+
+Name: pymongo
+Version: 4.6.3
+Author: The MongoDB Python Team
+License: Apache License
