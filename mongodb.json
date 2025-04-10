@@ -529,5 +529,17 @@
                 "input_file": "wheels/py39/pymongo-4.6.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
             }
         ]
+    },
+    "pip313_dependencies": {
+        "wheel": [
+            {
+                "module": "dnspython",
+                "input_file": "wheels/py3/dnspython-2.7.0-py3-none-any.whl"
+            },
+            {
+                "module": "pymongo",
+                "input_file": "wheels/py313/pymongo-4.6.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl"
+            }
+        ]
     }
 }
