@@ -1,9 +1,9 @@
 # MongoDB
 
-Publisher: Splunk \
-Connector Version: 2.0.11 \
-Product Vendor: MongoDB \
-Product Name: MongoDB \
+Publisher: Splunk <br>
+Connector Version: 2.0.11 <br>
+Product Vendor: MongoDB <br>
+Product Name: MongoDB <br>
 Minimum Product Version: 6.3.0
 
 This app supports CRUD operations in a MongoDB database
@@ -51,18 +51,18 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[post data](#action-post-data) - Add data to the database \
-[get data](#action-get-data) - Get data from the database \
-[update data](#action-update-data) - Update documents which match a given filter \
-[delete data](#action-delete-data) - Delete documents which match a given filter \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[post data](#action-post-data) - Add data to the database <br>
+[get data](#action-get-data) - Get data from the database <br>
+[update data](#action-update-data) - Update documents which match a given filter <br>
+[delete data](#action-delete-data) - Delete documents which match a given filter <br>
 [list tables](#action-list-tables) - List all the collections in the database
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -77,7 +77,7 @@ No Output
 
 Add data to the database
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -105,7 +105,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Get data from the database
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 By leaving the <b>filter</b> parameter blank, all documents in the collection will be returned.
@@ -135,7 +135,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Update documents which match a given filter
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 All documents which match the <b>filter</b> parameter will be updated.
@@ -165,7 +165,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Delete documents which match a given filter
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 All documents which match the <b>filter</b> parameter will be deleted.
@@ -193,7 +193,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 List all the collections in the database
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters

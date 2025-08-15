@@ -14,7 +14,7 @@
     "utctime_updated": "2024-11-13T15:09:22.000000Z",
     "package_name": "phantom_mongodb",
     "main_module": "mongodb_connector.py",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "fips_compliant": true,
     "min_phantom_version": "6.3.0",
     "latest_tested_versions": [
@@ -526,7 +526,19 @@
             },
             {
                 "module": "pymongo",
-                "input_file": "wheels/py39/pymongo-4.6.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+                "input_file": "wheels/py39/pymongo-4.14.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+            }
+        ]
+    },
+    "pip313_dependencies": {
+        "wheel": [
+            {
+                "module": "dnspython",
+                "input_file": "wheels/py3/dnspython-2.7.0-py3-none-any.whl"
+            },
+            {
+                "module": "pymongo",
+                "input_file": "wheels/py313/pymongo-4.14.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
             }
         ]
     }
