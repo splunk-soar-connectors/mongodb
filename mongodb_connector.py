@@ -153,15 +153,15 @@ class MongodbConnector(BaseConnector):
             query = bson_loads(query)
         except Exception as e:
             return action_result.set_status(phantom.APP_ERROR, "Unable to load filter", e)
+        ret_val = self._check_collection(action_result, collection)
+        if phantom.is_fail(ret_val):
+            return ret_val
+
         self.save_progress("Deleting data...")
         try:
             results = self._db[collection].delete_many(query)
         except Exception as e:
             return action_result.set_status(phantom.APP_ERROR, "Error deleting data", e)
-
-        ret_val = self._check_collection(action_result, collection)
-        if phantom.is_fail(ret_val):
-            return ret_val
 
         summary = action_result.get_summary()
         summary["deleted_count"] = results.deleted_count

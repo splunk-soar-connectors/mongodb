@@ -1,3 +1,4 @@
 **Unreleased**
 
 * Replace removed PyMongo APIs used to list and count database resources.
+* Validate collection existence before deleting MongoDB documents.
