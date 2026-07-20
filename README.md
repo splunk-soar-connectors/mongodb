@@ -1,7 +1,7 @@
 # MongoDB
 
 Publisher: Splunk <br>
-Connector Version: 2.0.12 <br>
+Connector Version: 2.0.13 <br>
 Product Vendor: MongoDB <br>
 Product Name: MongoDB <br>
 Minimum Product Version: 6.3.0
