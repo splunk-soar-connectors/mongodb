@@ -1,6 +1,6 @@
 # File: mongodb_connector.py
 #
-# Copyright (c) 2018-2025 Splunk Inc.
+# Copyright (c) 2018-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ class MongodbConnector(BaseConnector):
         # MongoDB wont throw an error if using a collection that doesn't exist,
         #  but we want to create one if an unknown collection is used
         #  in a get, update, or delete
-        collections = self._db.collection_names(include_system_collections=False)
+        collections = self._db.list_collection_names()
         if collection not in collections:
             return action_result.set_status(phantom.APP_ERROR, "Specified collection does not exist")
         return phantom.APP_SUCCESS
@@ -67,7 +67,7 @@ class MongodbConnector(BaseConnector):
 
         self.save_progress("Getting db names")
         try:
-            db_names = self._client.database_names()
+            db_names = self._client.list_database_names()
         except Exception as e:
             self.save_progress("Test connectivity failed")
             return action_result.set_status(phantom.APP_ERROR, "Error listing databases", e)
@@ -137,7 +137,7 @@ class MongodbConnector(BaseConnector):
                 return action_result.set_status(phantom.APP_ERROR, "Error serializing query results", e)
 
         try:
-            record_count = query_results.count()
+            record_count = self._db[collection].count_documents(query or {})
         except Exception as e:
             return action_result.set_status(phantom.APP_ERROR, "Error returning record count from query", e)
 
@@ -153,15 +153,15 @@ class MongodbConnector(BaseConnector):
             query = bson_loads(query)
         except Exception as e:
             return action_result.set_status(phantom.APP_ERROR, "Unable to load filter", e)
+        ret_val = self._check_collection(action_result, collection)
+        if phantom.is_fail(ret_val):
+            return ret_val
+
         self.save_progress("Deleting data...")
         try:
             results = self._db[collection].delete_many(query)
         except Exception as e:
             return action_result.set_status(phantom.APP_ERROR, "Error deleting data", e)
-
-        ret_val = self._check_collection(action_result, collection)
-        if phantom.is_fail(ret_val):
-            return ret_val
 
         summary = action_result.get_summary()
         summary["deleted_count"] = results.deleted_count
@@ -201,7 +201,7 @@ class MongodbConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
         self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         self.save_progress("Fetching data...")
-        collections = self._db.collection_names(include_system_collections=False)
+        collections = self._db.list_collection_names()
         for collection in collections:
             action_result.add_data({"collection": collection})
         return action_result.set_status(phantom.APP_SUCCESS, "Successfully listed collections")

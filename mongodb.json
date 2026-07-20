@@ -9,7 +9,7 @@
     "product_name": "MongoDB",
     "product_version_regex": ".*",
     "publisher": "Splunk",
-    "license": "Copyright (c) 2018-2025 Splunk Inc.",
+    "license": "Copyright (c) 2018-2026 Splunk Inc.",
     "app_version": "2.0.12",
     "utctime_updated": "2025-09-08T22:19:15.887520Z",
     "package_name": "phantom_mongodb",
@@ -534,7 +534,7 @@
         "wheel": [
             {
                 "module": "dnspython",
-                "input_file": "wheels/py3/dnspython-2.7.0-py3-none-any.whl"
+                "input_file": "wheels/py3/dnspython-2.8.0-py3-none-any.whl"
             },
             {
                 "module": "pymongo",
